@@ -1,0 +1,8 @@
+.item-list-header{
+    .sort-button{
+        &.selected{
+            color: #a320ba;
+            transition: .3s;
+        }
+    }
+}
