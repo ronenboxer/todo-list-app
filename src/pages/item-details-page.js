@@ -1,6 +1,6 @@
-import { Box } from "@elementor/ui";
-import { Link, useParams } from "react-router-dom";
-import { useTodo } from "../hooks/use-todo";
+import { Box } from '@elementor/ui';
+import { Link } from 'react-router-dom';
+import { useTodo } from '../hooks/use-todo';
 
 export function ItemsDetailsPage() {
     const todo = useTodo();

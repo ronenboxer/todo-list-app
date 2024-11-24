@@ -1,10 +1,10 @@
-import { Box, Button, FilledInput, FormControl, FormGroup, FormLabel, Modal, Typography } from "@elementor/ui";
-import { useTodo } from "../hooks/use-todo";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { TodoService } from "../services/todo.service";
-import { useTodos } from "../hooks/use-todos";
-import { DELETE_TODO, SET_TODOS } from "../store/todos-reducer";
+import { Box, Button, FilledInput, FormControl, FormGroup, FormLabel, Modal, Typography } from '@elementor/ui';
+import { useTodo } from '../hooks/use-todo';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { TodoService } from '../services/todo.service';
+import { useTodos } from '../hooks/use-todos';
+import { DELETE_TODO, SET_TODOS } from '../store/todos-reducer';
 
 export function ItemsEditPage() {
     const todo = useTodo();

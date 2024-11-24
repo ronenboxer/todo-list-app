@@ -1,8 +1,8 @@
-import { Box, Button } from "@elementor/ui";
-import { ItemList } from "../components/item-list";
-import { useTodos } from "../hooks/use-todos";
-import { TodoService } from "../services/todo.service";
-import { SET_TODOS } from "../store/todos-reducer";
+import { Box, Button } from '@elementor/ui';
+import { ItemList } from '../components/item-list';
+import { useTodos } from '../hooks/use-todos';
+import { TodoService } from '../services/todo.service';
+import { SET_TODOS } from '../store/todos-reducer';
 
 export function HomePage() {
     const { dispatch } = useTodos();
@@ -14,7 +14,7 @@ export function HomePage() {
         TodoService
             .restoreDefault()
             .then( ( todos ) => {
-                dispatch( { type: 'SET_TODOS', payload: todos } );
+                dispatch( { type: SET_TODOS, payload: todos } );
             } )
     }
 

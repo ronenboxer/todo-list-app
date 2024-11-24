@@ -1,5 +1,5 @@
-import { LocalStorageService } from "./local-storage.service";
-import { makeId } from "./utils.service";
+import { LocalStorageService } from './local-storage.service';
+import { makeId } from './utils.service';
 
 const LOCAL_STORAGE_KEY = 'todo-list';
 
@@ -31,7 +31,7 @@ const DEFAULT_DATA = [
 ];
 
 async function getItems() {
-    const items = await LocalStorageService.get( LocalStorageService.LOCAL_STORAGE_KEY );
+    const items = await LocalStorageService.get( LOCAL_STORAGE_KEY );
 
     if ( items ) {
         return items;
@@ -63,7 +63,7 @@ async function addItem( item ) {
 
     items.push( item );
 
-    LocalStorageService.set( LocalStorageService.LOCAL_STORAGE_KEY, items );
+    LocalStorageService.set( LOCAL_STORAGE_KEY, items );
 
     return true;
 }
@@ -82,7 +82,7 @@ async function editItem( updatedItem ) {
 
     items[ index ].updatedAt = new Date();
 
-    LocalStorageService.set( LocalStorageService.LOCAL_STORAGE_KEY, items );
+    LocalStorageService.set( LOCAL_STORAGE_KEY, items );
 
     return items[ index ];
 }
@@ -116,15 +116,15 @@ async function deleteItem( id ) {
 
     items.splice( index, 1 );
 
-    await LocalStorageService.set( LocalStorageService.LOCAL_STORAGE_KEY, items );
+    await LocalStorageService.set( LOCAL_STORAGE_KEY, items );
 
     return true;
 }
 
 async function restoreDefault() {
-    LocalStorageService.set( LocalStorageService.LOCAL_STORAGE_KEY, DEFAULT_DATA );
+    LocalStorageService.set( LOCAL_STORAGE_KEY, DEFAULT_DATA );
 
-    return LocalStorageService.get( LocalStorageService.LOCAL_STORAGE_KEY );
+    return LocalStorageService.get( LOCAL_STORAGE_KEY );
 }
 
 export const TodoService = {

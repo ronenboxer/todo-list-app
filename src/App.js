@@ -4,7 +4,7 @@ import { HomePage } from './pages/home-page';
 import { ItemsDetailsPage } from './pages/item-details-page';
 import { ItemsEditPage } from './pages/item-edit-page';
 import { ThemeProvider } from '@elementor/ui/styles';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { SET_TODOS, todosReducer } from './store/todos-reducer';
 import { TodosContext } from './store/todos-context';
 import { TodoService } from './services/todo.service';
@@ -14,7 +14,7 @@ function App() {
   const [ todos, dispatch ] = useReducer( todosReducer ,null );
 
   useEffect( () => {
-    const todos = TodoService
+    TodoService
       .getItems()
       .then( ( todos ) => {
         dispatch( { type: SET_TODOS, payload: todos } );

@@ -1,7 +1,7 @@
 import { TableRow, TableCell, Tooltip, Button } from '@elementor/ui';
 import { useNavigate } from 'react-router-dom';
 
-export function ItemPreview( { item, actions, columns } ) {
+export function ItemPreview( { item, columns } ) {
     const location = useNavigate();
 
     function navigate( url ) {

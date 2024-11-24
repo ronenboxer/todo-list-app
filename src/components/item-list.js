@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { TableContainer, Table, TableBody, Box, Button } from '@elementor/ui';
-import { ItemListHeader } from "./item-list-header";
-import { ItemPreview } from "./item-preview";
-import { useTodos } from "../hooks/use-todos";
-import { DELETE_TODO, SET_TODOS } from "../store/todos-reducer";
-import { TodoService } from "../services/todo.service";
-import { Link, useNavigate } from "react-router-dom";
-import { makeId } from "../services/utils.service";
-import { NewItem } from "./new-item";
+import { useState } from 'react';
+import { TableContainer, Table, TableBody, Button } from '@elementor/ui';
+import { ItemListHeader } from './item-list-header';
+import { ItemPreview } from './item-preview';
+import { useTodos } from '../hooks/use-todos';
+import { DELETE_TODO, SET_TODOS } from '../store/todos-reducer';
+import { TodoService } from '../services/todo.service';
+import { useNavigate } from 'react-router-dom';
+import { makeId } from '../services/utils.service';
+import { NewItem } from './new-item';
 
 export function ItemList( { items } ) {
     const [ sortIndex, setSortIndex ] = useState( { index: 0, isAsc: true } );
@@ -48,7 +48,7 @@ export function ItemList( { items } ) {
         const mewItem = { ...items.find( item => item.id === id ), id: makeId() };
         dispatch( { type: SET_TODOS, payload: [ ...items, mewItem ] } );
 
-        const item = TodoService
+        TodoService
             .cloneItem( id )
             .then( ( item ) => {
                 dispatch( { type: DELETE_TODO, payload: mewItem.id } );

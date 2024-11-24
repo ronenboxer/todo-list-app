@@ -1,9 +1,8 @@
-import { Button, FilledInput, FormControl, FormLabel, TableCell, TableRow } from "@elementor/ui";
-import { useState } from "react";
-import { TodoService } from "../services/todo.service";
-import { makeId } from "../services/utils.service";
-import { useTodos } from "../hooks/use-todos";
-import { DELETE_TODO, SET_TODOS } from "../store/todos-reducer";
+import { Button, FilledInput, FormControl, TableCell, TableRow } from '@elementor/ui';
+import { useState } from 'react';
+import { TodoService } from '../services/todo.service';
+import { useTodos } from '../hooks/use-todos';
+import { SET_TODOS } from '../store/todos-reducer';
 
 export function NewItem( { columns } ) {
     const { todos, dispatch } = useTodos();
@@ -53,9 +52,10 @@ export function NewItem( { columns } ) {
                         >Clear</Button>
                     </>
                 );
-        }
 
-        return null;
+                default:
+                    return null;
+        }
     }
 
     return (
