@@ -1,11 +1,11 @@
 import { TableRow, TableCell, Tooltip, Button } from '@elementor/ui';
 import { useNavigate } from 'react-router-dom';
 
-export function ItemPreview( { item, actions, columns } ) {
-    const location = useNavigate();
+export function ItemPreview( { item, columns } ) {
+    const navigator = useNavigate();
 
     function navigate( url ) {
-        location( url );
+        navigator( url );
     }
 
     return (
@@ -18,7 +18,7 @@ export function ItemPreview( { item, actions, columns } ) {
                             ?<Tooltip title={ 'Details' }>
                                 <Button onClick={ () => navigate( `/item/${ item.id }` )}>
                                 { column.isDate
-                                    ? item[ column.key ] ? new Date( item[ column.key ] ).toLocaleString() : null
+                                    ? new Date( item[ column.key ] ).toLocaleString()
                                     : item[ column.key ]
                                 }
                                 </Button>

@@ -1,8 +1,8 @@
 function get( key ) {
-     return new Promise( ( resolve, reject ) => {
+     return new Promise( ( resolve ) => {
     setTimeout(() => {
         return resolve( JSON.parse( localStorage.getItem( key ) ?? 'null' ) );
-    }, 3000);
+    }, 1500);
   } );
 }
 

@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { TableContainer, Table, TableBody, Box, Button } from '@elementor/ui';
-import { ItemListHeader } from "./item-list-header";
-import { ItemPreview } from "./item-preview";
-import { useTodos } from "../hooks/use-todos";
-import { DELETE_TODO, SET_TODOS } from "../store/todos-reducer";
-import { TodoService } from "../services/todo.service";
-import { Link, useNavigate } from "react-router-dom";
-import { makeId } from "../services/utils.service";
-import { NewItem } from "./new-item";
+import { ItemListHeader } from './item-list-header';
+import { ItemPreview } from './item-preview';
+import { useTodos } from '../hooks/use-todos';
+import { DELETE_TODO, SET_TODOS } from '../store/todos-reducer';
+import { TodoService } from '../services/todo.service';
+import { Link, useNavigate } from 'react-router-dom';
+import { makeId } from '../services/utils.service';
+import { NewItem } from './new-item';
 
 export function ItemList( { items } ) {
     const [ sortIndex, setSortIndex ] = useState( { index: 0, isAsc: true } );
@@ -20,14 +20,14 @@ export function ItemList( { items } ) {
         { key: 'updatedAt', label: 'Updated At', isDate: true, sortable: true },
         { key: 'actions', label: 'Actions', altContent: ( id ) => (
             <>
-                <Button onClick={ () => navigate( `/item/${ id }/edit` ) }>Edit</Button>
+                <Button onClick={ () => navigate( `/item/${ id }edit` ) }>Edit</Button>
                 <Button onClick={ () => cloneItem( id ) }>Clone</Button>
                 <Button onClick={ ( e ) => onDeleteTodo( e, id ) }>Delete</Button>
             </>
         ) },
     ];
 
-    const location = useNavigate();
+    const navigator = useNavigate();
 
     function handleSort( index ) {
         if ( ! columns[ index ].sortable ) {
@@ -41,14 +41,14 @@ export function ItemList( { items } ) {
     }
 
     function navigate( url ) {
-        location( url );
+        navigator( url );
     }
 
     function cloneItem( id ) {
-        const mewItem = { ...items.find( item => item.id === id ), id: makeId() };
+        const mewItem = { id: makeId(), ...items.find( item => item.id === id ) };
         dispatch( { type: SET_TODOS, payload: [ ...items, mewItem ] } );
 
-        const item = TodoService
+        TodoService
             .cloneItem( id )
             .then( ( item ) => {
                 dispatch( { type: DELETE_TODO, payload: mewItem.id } );
@@ -78,7 +78,7 @@ export function ItemList( { items } ) {
     function getSortedItems() {
         return [ ...items ].sort( ( itemA, itemB ) => ( itemA[ columns[ sortIndex.index ].key ] > itemB[ columns[ sortIndex.index ].key ]
             ? 1
-            : -1 ) * ( sortIndex.isAsc ? 1 : -1 ) );
+            : -1 ) * ( sortIndex.isAsc ? 1 : 1 ) );
     }
 
     const sortedItems = getSortedItems();
@@ -86,10 +86,10 @@ export function ItemList( { items } ) {
     return (
         <TableContainer>
             <Table>
-                <ItemListHeader columns={ columns } onSort={ handleSort } selectedSort={ sortIndex }/>
+                <ItemListHeader columns={ columns } onSort={ () => handleSort } selectedSort={ sortIndex }/>
                 <TableBody className="item-list-body">
                     { sortedItems.map( ( item ) => (
-                        <ItemPreview item={ item } key={ item.id } columns={ columns }/>
+                        <ItemPreview item={ sortedItems[ 0 ] } key={ item.id } columns={ columns }/>
                     ) )}
                     <NewItem columns={ columns }/>
                 </TableBody>

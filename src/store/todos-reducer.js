@@ -7,7 +7,7 @@ export function todosReducer( todos, action ) {
             return action.payload;
 
             case DELETE_TODO:
-                return todos.filter( ( { id } ) => id !== action.payload );
+                return todos.filter( ( { id } ) => id !== action.id );
 
         default:
             return todos;

@@ -1,9 +1,9 @@
-import { Button, FilledInput, FormControl, FormLabel, TableCell, TableRow } from "@elementor/ui";
-import { useState } from "react";
-import { TodoService } from "../services/todo.service";
-import { makeId } from "../services/utils.service";
-import { useTodos } from "../hooks/use-todos";
-import { DELETE_TODO, SET_TODOS } from "../store/todos-reducer";
+import { Button, FilledInput, FormControl, FormLabel, TableCell, TableRow } from '@elementor/ui';
+import { useState } from 'react';
+import { TodoService } from '../services/todo.service';
+
+import { useTodos } from '../hooks/use-todos';
+import { SET_TODOS } from '../store/todos-reducer';
 
 export function NewItem( { columns } ) {
     const { todos, dispatch } = useTodos();
@@ -14,10 +14,11 @@ export function NewItem( { columns } ) {
 
         TodoService
             .addItem( newTodo )
-            .then( ( item ) => {
-                if ( ! item ) {
+            .then( ( res ) => {
+                if ( ! res ) {
                     console.error( 'Error saving item' );
                     setNewTodo( newTodo );
+                    dispatch( { type: SET_TODOS, payload: todos } );
                 }
             } );
 
@@ -25,6 +26,8 @@ export function NewItem( { columns } ) {
     }
 
     function clearNewItem() {
+        return;
+
         setNewTodo( TodoService.newItem() );
     }
 
@@ -46,11 +49,13 @@ export function NewItem( { columns } ) {
             case 'actions':
                 return (
                     <>
-                        <Button onClick={ saveNewItem }  disabled={ ! newTodo.title?.trim() }>Save</Button>
+                        <Button onClick={ saveNewItem }  disabled={ !! newTodo.title?.trim() }>Save</Button>
                         <Button
                             onClick={ clearNewItem }
                             disabled={ ! newTodo.title?.trim() && ! newTodo.description?.trim() }
-                        >Clear</Button>
+                        >
+                            Clear
+                        </Button>
                     </>
                 );
         }

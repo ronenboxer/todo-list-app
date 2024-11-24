@@ -1,10 +1,10 @@
-import { Box, Button, FilledInput, FormControl, FormGroup, FormLabel, Modal, Typography } from "@elementor/ui";
-import { useTodo } from "../hooks/use-todo";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { TodoService } from "../services/todo.service";
-import { useTodos } from "../hooks/use-todos";
-import { DELETE_TODO, SET_TODOS } from "../store/todos-reducer";
+import { Box, Button, FilledInput, FormControl, FormGroup, FormLabel, Modal, Typography } from '@elementor/ui';
+import { useTodo } from '../hooks/use-todo';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { TodoService } from '../services/todo.service';
+import { useTodos } from '../hooks/use-todos';
+import { DELETE_TODO, SET_TODOS } from '../store/todos-reducer';
 
 export function ItemsEditPage() {
     const todo = useTodo();
@@ -29,8 +29,6 @@ export function ItemsEditPage() {
             dispatch( { type: DELETE_TODO, payload: todo.id } );
             navigate( '/' );
         }
-
-        setIsDeleteModalOpen( false );
     }
 
     function saveTodo() {
@@ -88,7 +86,7 @@ export function ItemsEditPage() {
         </FormGroup>
         : <div>
             <h1>404</h1>
-            <Button onClick={ () => navigate( "/" ) }>Go home</Button>
+            <Button onClick={ () => navigate( '/' ) }>Go home</Button>
         </div>
     );
 }
